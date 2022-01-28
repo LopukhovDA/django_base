@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Стол",
+        "price": 16000,
+        "quantity": 100,
+        "category": "Столы"
+    },
+    {
+        "name": "Отличный стул",
+        "price": 4000,
+        "quantity": 58,
+        "category": "Стулья"
+    },
+    {
+        "name": "Диван",
+        "price": 50000,
+        "quantity": 235,
+        "category": "Диваны"
+    },
+    {
+        "name": "Лампа",
+        "price": 500,
+        "quantity": 159,
+        "category": "Лампы"
+    },
+    {
+        "name": "Классный стул",
+        "price": 1500,
+        "quantity": 10,
+        "category": "Стулья"
+    }
+]
