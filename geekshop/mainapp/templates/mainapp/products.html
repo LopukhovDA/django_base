@@ -16,7 +16,7 @@
 			<div class="links clearfix">
 				<ul class="links-menu">
 					{% for menu in prod_menu %}
-					<li><a href="{{ menu.href }}" class="active">{{ menu.name }}</a></li>
+					<li><a href="{{ menu.id }}" class="active">{{ menu.name }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -71,9 +71,10 @@
 				<div class="related-products clearfix">
 					{% for prod in catalog %}
 					<div class="block">
-						<a href="#"><img src="{% static prod.img %}" alt="">
+						<a href="#"><img src="/media/{{ prod.image }}" alt="{{ prod.main_desc }}">
 							<div class="text">
 								<img src="{% static 'img/icon-hover.png' %}" alt="">
+								<h3>{{ prod.category.name }}</h3>
 								<h4>{{ prod.name }}</h4>
 								<p> {{ prod.description }} </p>
 							</div>

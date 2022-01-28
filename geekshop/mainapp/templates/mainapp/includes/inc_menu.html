@@ -2,7 +2,7 @@
     {% for link in links_menu %}
         <li>
             <a href="{% url link.href %}" 
-               class="{% if request.resolver_match.url_name == link.href %}
+               class="{% if request.resolver_match.url_name in link.href %}
                         active
                       {% endif %}">
                 {{ link.name|title }}
