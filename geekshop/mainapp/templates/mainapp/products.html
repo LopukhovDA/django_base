@@ -8,19 +8,11 @@
 				<a href="{% url 'main' %}" class="logo"></a>
 				{% include 'mainapp/includes/inc_menu.html' %}
 				<a href="#" class="search"></a>
-                <a href="#" class="basket"></a>
 			</div>
 		</div>
 
 		<div class="details">
-			<div class="links clearfix">
-				<ul class="links-menu">
-					{% for menu in prod_menu %}
-					<li><a href="{{ menu.id }}" class="active">{{ menu.name }}</a></li>
-					{% endfor %}
-				</ul>
-			</div>
-
+			{% include 'mainapp/includes/inc_categories_menu.html' %}
 			<div class="details-products">
 				<div class="details-slider">
 					<div class="slider-product">
