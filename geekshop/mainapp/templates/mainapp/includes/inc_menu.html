@@ -5,7 +5,7 @@
                class="{% if request.resolver_match.url_name in link.href %}
                         active
                       {% endif %}">
-                {{ link.name|title }}
+                {{ link.name|title }} {% if link.name == 'корзина'%} {{ count }} {% endif %}
             </a>
         </li>
     {% endfor %}
