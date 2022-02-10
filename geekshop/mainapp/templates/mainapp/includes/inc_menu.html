@@ -5,7 +5,11 @@
                class="{% if request.resolver_match.url_name in link.href %}
                         active
                       {% endif %}">
-                {{ link.name|title }} {% if link.name == 'корзина'%} {{ count }} {% endif %}
+                {{ link.name|title }} {% if link.name == 'корзина'%} {% if basket %} 
+                {{ basket.0.total_cost|floatformat:0 }} руб 
+                ({{ basket.0.total_quantity }} шт)
+              {% endif %}
+              {% endif %}
             </a>
         </li>
     {% endfor %}

@@ -30,7 +30,7 @@
 			<div class="tab-content">
 				{% for prod in catalog %}
 				<div class="block">
-					<a href="#"><img src="/media/{{ prod.image }}" alt="{{ prod.main_desc }}">
+					<a href="{% url 'products:product' prod.pk %}"><img src="/media/{{ prod.image }}" alt="{{ prod.main_desc }}">
 						<div class="text">
 							<img src="{% static 'img/icon-hover.png' %}" alt="">
 							<h3>{{ prod.category.name }}</h3> 

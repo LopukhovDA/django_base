@@ -16,44 +16,33 @@
 			<div class="details-products">
 				<div class="details-slider">
 					<div class="slider-product">
-						<img src="/static/img/slider1.jpg">
+					  <img src="/media/{{ hot_product.image }}">
 					</div>
 					<div class="slider-control">
-						<div class="block">
-							<a href="#"><img src="{% static 'img/controll.jpg' %}" alt="">
-								<div class="text"></div>
-							</a>
-						</div>
-						<div class="block">
-							<a href="#"><img src="{% static 'img/controll1.jpg' %}" alt="">
-								<div class="text"></div>
-							</a>
-						</div>
-						<div class="block">
-							<a href="#"><img src="{% static 'img/controll2.jpg' %}" alt="">
-								<div class="text"></div>
-							</a>
-						</div>
+					  <div class="block">
+						<a href="#"><img src="/media/{{ hot_product.image }}" alt=""></a>
+					  </div>
+					  <div class="block">
+						<a href="#"><img src="/media/{{ hot_product.image }}" alt=""></a>
+					  </div>
+					  <div class="block">
+						<a href="#"><img src="/media/{{ hot_product.image }}" alt=""></a>
+					  </div>
 					</div>
-				</div>
-
-				<div class="description">
-					<h3 class="big-bold">Отличный стул</h3>
+				  </div>
+			
+				  <div class="description">
+					<h3 class="big-bold">{{ hot_product.name }}</h3>
 					<h3 class="red">горячее предложение</h3>
-					<p class="price"> 2585.9 <span>руб</span></p>
-					<a href="#" class="red-button">
-						заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+					<p class="price">{{ hot_product.price }} <span>руб</span></p>
+					<a href="{% url 'products:product' hot_product.pk %}" class="red-button">
+					  заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
 					</a>
 					<div class="description-text">
-						<p>Расположитесь комфортно.</p> 
-						<p>Отличное качество материалов
-						позволит вам это.</p> 
-						<p>Различные цвета</p>
-						<p>высочайший уровень
-						эргономики и прочность.</p>
+					  {{ hot_product.description }} 
 					</div>
 				</div>
-			</div>
+			</div>			
 
 			<div class="related">
 				<div class="title clearfix">
@@ -63,7 +52,7 @@
 				<div class="related-products clearfix">
 					{% for prod in catalog %}
 					<div class="block">
-						<a href="#"><img src="/media/{{ prod.image }}" alt="{{ prod.main_desc }}">
+						<a href="{% url 'products:product' prod.pk %}"><img src="/media/{{ prod.image }}" alt="{{ prod.main_desc }}">
 							<div class="text">
 								<img src="{% static 'img/icon-hover.png' %}" alt="">
 								<h3>{{ prod.category.name }}</h3>
