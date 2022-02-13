@@ -3,30 +3,35 @@
         "name": "Стол",
         "price": 16000,
         "quantity": 100,
-        "category": "Столы"
+        "category": "Столы",
+        "image": "products_images/default.jpg"
     },
     {
         "name": "Отличный стул",
         "price": 4000,
         "quantity": 58,
-        "category": "Стулья"
+        "category": "Стулья",
+        "image": "products_images/product-4.jpg"
     },
     {
         "name": "Диван",
         "price": 50000,
         "quantity": 235,
-        "category": "Диваны"
+        "category": "Диваны",
+        "image": "products_images/product-3-sm.jpg"
     },
     {
         "name": "Лампа",
         "price": 500,
         "quantity": 159,
-        "category": "Лампы"
+        "category": "Лампы",
+        "image": "products_images/product-1.jpg"
     },
     {
         "name": "Классный стул",
         "price": 1500,
         "quantity": 10,
-        "category": "Стулья"
+        "category": "Стулья",
+        "image": "products_images/product-2.jpg"
     }
 ]

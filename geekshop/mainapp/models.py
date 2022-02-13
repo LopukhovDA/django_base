@@ -28,6 +28,7 @@ class Product(models.Model):
         verbose_name="количество товара на складе", default=0
     )
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    is_active = models.BooleanField(verbose_name="активен", default=True)
 
     def __str__(self):
         return f"{self.name} ({self.category.name})"
