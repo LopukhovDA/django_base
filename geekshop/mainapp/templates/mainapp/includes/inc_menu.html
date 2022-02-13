@@ -19,7 +19,12 @@
         {{ user.first_name|default:'Пользователь' }}          
     </a>
 </li>
-{% endif %}  
+{% endif %}
+{% if user.is_superuser %}
+    <li>
+      <a href="{% url 'admin:users' %}">админка</a>
+    </li>
+  {% endif %}
 <li>
     {% if user.is_authenticated %}
       <a href="{% url 'auth:logout' %}">выйти</a>

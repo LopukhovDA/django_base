@@ -32,7 +32,6 @@ catalog = [
 ]
 
 
-# Create your views here.
 def main(request):
     products = Product.objects.all()[:3]
     return render(
@@ -64,8 +63,7 @@ def get_same_products(hot_product):
 
 
 def products(request, pk=None):
-    # with open("static/json/prod_menu.json", "r", encoding="utf-8") as f:
-    #    prod_menu = json.load(f)
+
     prod_menu = ProductCategory.objects.all()
     products = Product.objects.all()
     basket = get_basket(request.user)
