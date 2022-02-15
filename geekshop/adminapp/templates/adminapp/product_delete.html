@@ -3,15 +3,15 @@
 
 
 {% block content %}
-  <div class="category_delete">
-    Уверены, что хотите удалить категорию {{ object.name }} ?
-    <form action="{% url 'admin:category_delete' object.pk %}"
+  <div class="product_delete">
+    Уверены, что хотите удалить товар {{ object.name }} ?
+    <form action="{% url 'admin:product_delete' object.pk %}"
           method="post">
       {% csrf_token %}
       <input class="btn btn-danger" type="submit" value="удалить">
     </form>
     <button class="btn btn-success">
-      <a href="{% url 'admin:categories' %}">
+      <a href="{% url 'admin:products' object.category.pk %}">
         Отмена
       </a>
     </button>
