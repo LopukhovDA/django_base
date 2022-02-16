@@ -2,6 +2,12 @@
 {% load static %}
 
 {% block container %}
+<div class="hero-white">
+  <div class="header clearfix">
+      <a href="{% url 'main' %}" class="logo"></a>
+      {% include 'mainapp/includes/inc_menu.html' %}
+  </div>
+</div>
   <div class="details">
     <div class="links clearfix">
       {% include 'mainapp/includes/inc_categories_menu.html' %}
