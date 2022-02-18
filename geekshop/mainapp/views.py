@@ -39,15 +39,9 @@ def main(request):
     return render(
         request,
         "mainapp/index.html",
-        context={"links_menu": links_menu, "catalog": products, "title": "магазин"},
+        context={"links_menu": links_menu,
+                 "catalog": products, "title": "магазин"},
     )
-
-
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    else:
-        return []
 
 
 def get_hot_product():
@@ -67,9 +61,6 @@ def get_same_products(hot_product):
 def products(request, pk=None, page=1):
 
     prod_menu = ProductCategory.objects.filter(is_active=True)
-    basket = get_basket(request.user)
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
 
     if pk is not None:
         if pk == 0:
@@ -101,7 +92,6 @@ def products(request, pk=None, page=1):
                 "category": category,
                 "products": products_paginator,
                 "prod_menu": prod_menu,
-                "basket": basket,
             },
         )
 
@@ -134,9 +124,9 @@ def product(request, pk):
 
     context = {
         "title": title,
+        "links_menu": links_menu,
         "prod_menu": ProductCategory.objects.filter(is_active=True),
         "product": get_object_or_404(Product, pk=pk),
-        "basket": get_basket(request.user),
     }
 
     return render(request, "mainapp/product.html", context)

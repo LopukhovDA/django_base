@@ -109,6 +109,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+geekshop/django_new/
+.django_new/
 
 # Spyder project settings
 .spyderproject
