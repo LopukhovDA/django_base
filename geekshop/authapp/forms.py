@@ -5,9 +5,8 @@ from django import forms
 import random
 import hashlib
 
-# import django.contrib.auth.forms as forms
-
 from .models import ShopUser
+from .models import ShopUserProfile
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -32,6 +31,7 @@ class ShopUserRegisterForm(UserCreationForm):
             "email",
             "age",
             "avatar",
+            "city",
         )
 
     def __init__(self, *args, **kwargs):
@@ -64,7 +64,7 @@ class ShopUserEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
         fields = ("username", "first_name", "email",
-                  "age", "avatar", "password")
+                  "age", "avatar", "password", "city")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -80,3 +80,14 @@ class ShopUserEditForm(UserChangeForm):
             raise forms.ValidationError("Вы слишком молоды!")
 
         return data
+
+
+class ShopUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('about', 'gender')
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
