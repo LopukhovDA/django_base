@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from basketapp.models import Basket
 import random
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic.detail import DetailView
 
 
 links_menu = [
@@ -119,14 +120,13 @@ def contact(request):
     )
 
 
-def product(request, pk):
-    title = "продукты"
+class ProductView(DetailView):
+    model = Product
+    template_name = "mainapp/product.html"
 
-    context = {
-        "title": title,
-        "links_menu": links_menu,
-        "prod_menu": ProductCategory.objects.filter(is_active=True),
-        "product": get_object_or_404(Product, pk=pk),
-    }
-
-    return render(request, "mainapp/product.html", context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "продукты"
+        context["links_menu"] = links_menu
+        context['prod_menu'] = ProductCategory.objects.filter(is_active=True)
+        return context

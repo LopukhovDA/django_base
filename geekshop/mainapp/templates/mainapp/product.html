@@ -17,20 +17,20 @@
       <div class="details-slider">
         <div class="slider-product">
           <img src="/media/{{ product.image }}" 
-               alt="{{ product.main_desc }}">
+               alt="{{ object.main_desc }}">
         </div>
       </div>
 
       <div class="description">
-        <h3 class="big-bold">{{ product.name }}</h3>
+        <h3 class="big-bold">{{ object.name }}</h3>
         <br>
-        <p class="price"> {{ product.price }} <span>руб</span></p>
-        <a href="{% url 'basket:add' product.pk %}" class="red-button">
+        <p class="price"> {{ object.price }} <span>руб</span></p>
+        <a href="{% url 'basket:add' object.pk %}" class="red-button">
           заказать 
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </a>
         <div class="description-text">
-          {{ product.description }}
+          {{ object.description }}
         </div>
       </div>
     </div>
