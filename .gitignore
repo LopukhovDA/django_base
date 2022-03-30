@@ -131,4 +131,4 @@ dmypy.json
 .pyre/
 
 
-/geekshop/credentials.json
+/geekshop/geekshop/credentials.json
