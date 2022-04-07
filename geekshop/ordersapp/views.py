@@ -11,8 +11,8 @@ from django.views.generic.detail import DetailView
 from basketapp.models import Basket
 from ordersapp.models import Order, OrderItem
 from ordersapp.forms import OrderItemForm
-# from django.dispatch import receiver
-# from django.db.models.signals import pre_save, pre_delete
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 
 class OrderList(ListView):
@@ -20,6 +20,10 @@ class OrderList(ListView):
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super(ListView, self).dispatch(*args, **kwargs)
 
 
 class OrderItemsCreate(CreateView):
@@ -68,6 +72,10 @@ class OrderItemsCreate(CreateView):
 
         return super(OrderItemsCreate, self).form_valid(form)
 
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super(CreateView, self).dispatch(*args, **kwargs)
+
 
 class OrderItemsUpdate(UpdateView):
     model = Order
@@ -85,7 +93,8 @@ class OrderItemsUpdate(UpdateView):
             data['orderitems'] = OrderFormSet(
                 self.request.POST, instance=self.object)
         else:
-            formset = OrderFormSet(instance=self.object)
+            queryset = self.object.orderitems.select_related()
+            formset = OrderFormSet(instance=self.object, queryset=queryset)
             for form in formset.forms:
                 if form.instance.pk:
                     form.initial['price'] = form.instance.product.price
@@ -107,6 +116,10 @@ class OrderItemsUpdate(UpdateView):
 
         return super(OrderItemsUpdate, self).form_valid(form)
 
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super(UpdateView, self).dispatch(*args, **kwargs)
+
 
 class OrderDelete(DeleteView):
     model = Order
@@ -120,6 +133,10 @@ class OrderRead(DetailView):
         context = super(OrderRead, self).get_context_data(**kwargs)
         context['title'] = 'заказ/просмотр'
         return context
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super(DetailView, self).dispatch(*args, **kwargs)
 
 
 def order_forming_complete(request, pk):

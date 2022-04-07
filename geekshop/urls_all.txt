@@ -1,0 +1,12 @@
+http://178.21.10.184/
+http://178.21.10.184/products/
+http://178.21.10.184/contact/
+http://178.21.10.184/products/category/1/
+http://178.21.10.184/products/category/2/
+http://178.21.10.184/products/category/3/
+http://178.21.10.184/products/category/4/
+http://178.21.10.184/basket/
+http://178.21.10.184/order/
+http://178.21.10.184/auth/edit/
+http://178.21.10.184/order/update/11/
+http://178.21.10.184/order/read/11/
