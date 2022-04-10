@@ -36,7 +36,7 @@ catalog = [
 
 
 def main(request):
-    products = Product.objects.all()[:3]
+    products = Product.objects.all().select_related('category')[:3]
     return render(
         request,
         "mainapp/index.html",
