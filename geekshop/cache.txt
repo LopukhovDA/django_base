@@ -1,0 +1,46 @@
+cached_property
+basket
+
+без кэширования
+18 запросов 12 дубликатов
+
+Transactions:                  20125 hits
+Availability:                 100.00 %
+Elapsed time:                 275.61 secs
+Data transferred:             510.68 MB
+Response time:                  1.69 secs
+Transaction rate:              73.02 trans/sec
+Throughput:                     1.85 MB/sec
+Concurrency:                  123.23
+Successful transactions:       20000
+Failed transactions:               0
+Longest transaction:            8.16
+Shortest transaction:           0.00
+
+с кэшированием
+13 запросов 2 дубликата
+
+Transactions:                  20125 hits
+Availability:                 100.00 %
+Elapsed time:                 278.75 secs
+Data transferred:             510.68 MB
+Response time:                  1.71 secs
+Transaction rate:              72.20 trans/sec
+Throughput:                     1.83 MB/sec
+Concurrency:                  123.24
+Successful transactions:       20000
+Failed transactions:               0
+Longest transaction:            8.73
+Shortest transaction:           0.00
+
+Тег with
+
+http://178.21.10.184/order/read/12/
+
+без кэширования
+
+6 запросов 3 дубликата
+
+с кэшированием 
+
+5 запросов 2 дубликата
