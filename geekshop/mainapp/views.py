@@ -7,6 +7,8 @@ from basketapp.models import Basket
 import random
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.detail import DetailView
+from django.conf import settings
+from django.core.cache import cache
 
 
 links_menu = [
@@ -59,9 +61,21 @@ def get_same_products(hot_product):
     return same_products
 
 
+def get_categories():
+    if settings.LOW_CACHE:
+        KEY = 'all_categories'
+        categories = cache.get(KEY)
+        if not categories:
+            categories = ProductCategory.objects.filter(is_active=True)
+            cache.set(KEY, categories)
+            return categories
+    else:
+        return ProductCategory.objects.filter(is_active=True)
+
+
 def products(request, pk=None, page=1):
 
-    prod_menu = ProductCategory.objects.filter(is_active=True)
+    prod_menu = get_categories()
 
     if pk is not None:
         if pk == 0:
@@ -128,5 +142,5 @@ class ProductView(DetailView):
         context = super().get_context_data(**kwargs)
         context["title"] = "продукты"
         context["links_menu"] = links_menu
-        context['prod_menu'] = ProductCategory.objects.filter(is_active=True)
+        context['prod_menu'] = get_categories()
         return context
