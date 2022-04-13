@@ -2,6 +2,7 @@ from django.db import models
 
 from django.conf import settings
 from mainapp.models import Product
+from django.db.models import F
 
 
 class Order(models.Model):
@@ -38,22 +39,32 @@ class Order(models.Model):
     def __str__(self):
         return 'Текущий заказ: {}'.format(self.id)
 
-    def get_total_quantity(self):
-        items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.quantity, items)))
+
+#    def get_total_quantity(self):
+#        items = self.orderitems.select_related()
+#        return sum(list(map(lambda x: x.quantity, items)))
 
     def get_product_type_quantity(self):
         items = self.orderitems.select_related()
         return len(items)
 
-    def get_total_cost(self):
+#    def get_total_cost(self):
+#        items = self.orderitems.select_related()
+#        return sum(list(map(lambda x: x.quantity * x.product.price, items)))
+
+    def get_summary(self):
         items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.quantity * x.product.price, items)))
+        return {
+            'total_cost': sum(list(map(lambda x: x.quantity * x.product.price,
+                                       items))),
+            'total_quantity': sum(list(map(lambda x: x.quantity, items)))
+        }
 
     # переопределяем метод, удаляющий объект
+
     def delete(self):
         for item in self.orderitems.select_related():
-            item.product.quantity += item.quantity
+            item.product.quantity = F('quantity') + item.quantity
             item.product.save()
 
         self.is_active = False
@@ -64,7 +75,7 @@ class OrderItemQuerySet(models.QuerySet):
 
     def delete(self, *args, **kwargs):
         for object in self:
-            object.product.quantity += object.quantity
+            object.product.quantity = F('quantity') + object.quantity
             object.product.save()
         super(OrderItemQuerySet, self).delete(*args, **kwargs)
 
