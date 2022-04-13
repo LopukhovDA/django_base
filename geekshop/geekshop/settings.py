@@ -220,6 +220,7 @@ if DEBUG:
         'debug_toolbar.panels.profiling.ProfilingPanel',
         'template_profiler_panel.panels.template.TemplateProfilerPanel',
     ]
+
 """
 # caching
 #CACHE_MIDDLEWARE_ALIAS = 'default'
@@ -232,3 +233,4 @@ if DEBUG:
 #    }
 # }
 LOW_CACHE = False
+
